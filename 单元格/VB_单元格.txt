@@ -1,0 +1,74 @@
+单元格 是Excel中最小的一个单位（工作簿、工作表、行、列、单元格）
+单元格数量 = 行数：rows(B:B) * 列数 columns(2:2)
+单元格容量：32767个字符
+
+Range 对象，代表某一单元格、某一行、某一列、某一选定区域
+	Range("文本型装单元格地址")
+	Range("a1").Select	单元格
+	Range("a:a").Select	列
+	Range("1:3").Select	行
+	Range("a1:b10").Select	相邻区域 等同于 
+		Range("a1","b10") '变化写法1
+		Range(Range("a1"),(Range("b10")) '变化写法2
+	Range("a1:d7,c4:e8").Select 合并选
+	Range("a1:d7 c4:e8").Select 交选
+
+更多变化写法：
+	参照位置，相对引用法，相对位置
+		Range("b2,d4").Range("a1").Select 
+	嵌套Cell
+		Range(Cells(1,2), Cell(4,4))
+	地址可以支持变量
+		Range("a" & i)
+		Range("c3:e5")(2) '从左到右，从上到下对区域单元格编号
+			PS：超出区域会向下拓展行
+		Range("c3:e5")(2,3) '区域相对行列坐标
+	动态获取单元格对象，会经常做这样的操作
+	
+Range没有指定工作表，会默认为当前活动的工作表
+Range只对工作表对象中使用，不能对图表等其他表对象使用
+
+Cells单元格 
+	Cells表示工作表中所有单元格集合
+	集合Cells中定位
+		格式Cells(行号，列号) Cells(3,4) 等同于 Cells(3,"d")
+	参照Range定位
+		Range("b3,f11").Cells(2,2)
+		Range("b3,f11").Cells(6)
+	单元格简写：使用中括号 Eg:
+		[a3] '不用双引号
+		[b2:c6]
+		[b2:c6].Item(3) 'Item必须写
+		Range("b2:c6")(3) 'Item被省略
+		[b2:c6].Cells(3)
+
+三种单元格总结
+			Range		        Cells	   单元格地址
+	引用对象	单元格、区域、行列	单元格	   同Range
+	变量支持	支持			支持	   不支持
+	书写难易	难			难	   易
+
+行列引用：
+	列：
+		Columns(1)
+		Columns("a")
+		Columns("c:e") '多列不能用数字表示，必须用字母
+	行：
+		Rows(1)
+		Rows("2")
+		Rows("3:4")
+	Range("2:4") 等同于 [2:4]
+	Range("a:b") 等同于 [a:b]
+
+Range的Row、Column属性，指区域内左上角的行列号
+
+单元格属性
+	值	Value 		'实际是什么就是什么
+	值	Text		'看到什么就是什么
+		（单区域可以省去Value赋值，对区域必须带上Value）
+	地址	Address(1, 1) 	'绝对引用
+	剪切	Cut		'区域1剪切到区域2
+	复制 	Copy		'区域1复制到区域2
+	赋值	=		'区域2等于区域1的值，必须用.Value属性，会清除格式
+
+下一个教程3-13

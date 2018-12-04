@@ -1,0 +1,117 @@
+EXCEL VB LEARNIG NOTES by HELING 20181204
+
+对象：	是一种特殊的对象，不过没有指定哪个对象,只是一种统称。
+	在Excel VB中，指的就是：工作薄、工作表、单元格、图表、透视图。
+属性：	指对象所具有的特性。
+方法：	实际上就是对对象的操作，他是一种动作，一种行为。
+常量：	定义了之后，不做变化。
+	格式： Const 常量名 = 常量值
+变量：	在定义之后了还能再次赋值
+	格式： Dim 变量 As 变量类型 / 变量 = 变量值
+	PS: VBA 允许使用未定义的变量，默认变量是变体变量（Variant）
+	    Option Explicit 强制变量必须声明
+命名规则：
+	以字母开头
+	不能用保留字
+	不超过255个字符
+	同一范围内必须是唯一
+VBA常见的数据类型:
+	Integer		整形	% 	2Byte
+	Single		单精度	！	4Byte
+	Double		双精度	#	8Byte
+	Long		长整形	&	4Byte
+	String		字符型	$	定长或变长
+	Currency	货币型	@	8Byte
+数据类型声明：
+	Dim a As Integer 等同于 Dim a%
+	Dim a As Integer, b As Single 等同于 Dim a%, b!
+判断：
+	If类：
+		If (判断句) Then (操作)
+		If (判断句) Then (操作) End If
+		If (判断句) Then (操作) Else (操作) End If
+		If (判断句) Then (操作) ElseIf (判断) Then (操作) Else (操作) End If
+		IIf ([判断], [真操作],[假操作])
+		PS:可以嵌套 IIf ([判断], IIf(,,,),[假操作])
+	Select类：
+		Select Case (值) Case Is(值1)（操作） Case Else(值2)（操作） End Select
+		PS:不用Break,case匹配到后执行完毕直接跳到EndSelect
+
+循环：
+	DoLoop类:
+		Do (操作) Loop {死循环}
+		Do (操作+If() Then (Exit Do) End If ) Loop
+	DoWhileLoop类:
+		Do While (判断) (操作) Loop
+		Do (操作) Loop While (判断)
+	DoUntilLoop类：
+		Do (操作) Loop Until(判断)
+	For Each类：
+		For Each (变量) In (对象) Next
+	For next类：（内置计数器）
+		For (变量) = (值1) To (值2) Next
+		For (变量) = (值1) To (值2) Step (步长) Next
+结束：
+	Exit：退出当前语句
+		Exit Do
+		Exit For
+		Exit Function
+		Exit Sub 相当于 return
+	End: 结束一个块或者过程
+		End 有时等同于 Exit Sub(退出窗体用End)
+		End Function
+		End If
+		End Select
+		End Sub
+跳转：
+	GoTo Line:无条件转移到过程的指定行
+		(标记名):(操作)
+		If(判断) Then GoTo (标记名)
+	GoTo Return：执行后又跳转回去
+		(标记名):(操作) return
+		If(判断) Then GoTo (标记名)
+错误分支：
+	OnErrorResume
+		On Error Resume Next'错误出现时继续执行下去'
+	OnErrorGoto
+		On Error GoTo (标记名)
+重复利用对象：
+	With语句，对某一个对象执行一系列语句时，不用重复指出对象名称
+		With (对象) (.操作) End With
+	PS：可以不断嵌套
+公式与函数：
+	普通公式  eg:Sheet1.Cells(1,3) = "a1+b1"
+	批量公式  eg:Sheet1.Cells(i,4) = "=a" & i & "+b" & i (i循环)
+	数组公式  eg:Range("e1:e10").FormulaArray = "=a1:a10+b1:b10"
+		     Range("e1:e10") = "=a1:a10+b1:b10" 
+		  (PS：FormulaArray支持数组公式，两者不同)
+	带工作函数的计算
+		 eg:Sheet1.Cells(1,4) = "=sum(a1:b1)"
+	公式带引号的计算(用"转义")
+		 eg:Cells(12,1) = "=COUNTIF(A1:A10,"">9"")"
+	借用工作表函数
+		Applicaton.WorksheetFunction.函数名(VB表达式)
+		WorksheetFunction.函数名(VB表达式)
+		Applicaton.函数名(VB表达式)
+	VBA函数：
+		VBA.函数名(VB表达式)
+		函数名(VB表达式)
+	自定义函数：
+		Function 函数名(参数) (判断操作) End Function
+运算符：
+	赋值运算符：=
+	数学运算符：&(字符连接符) -(负号)  ^(指数)
+		    +(加)	-(减)	Mod(余)
+		    \(整除)	*(乘)	/(除)
+	逻辑运算：  Not(非)	And(与)		Or(或)
+		    Xor(异或)	Eqv(相等)	Imp(隐含)
+	关系运算：  =(相同)	<>(不等)	>(大于)
+		    <(小于)	>=(不小于)	<=(不大于)
+		    Like(比较两个字符串)
+	Like通配符：区分大小写
+			?单一字符；	eg:"abc" like "a?c"
+			*零个或多个字符；  eg:"excel" like "*c*"
+			#任何一个数字；    eg: 88 like "##"
+			[charlist]list任何一个单一字符,[!charlist]反之;  
+				eg: "a" Like "[a-z]" ; 8 Like "[1-4, 6-9]"
+		

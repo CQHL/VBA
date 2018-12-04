@@ -1,0 +1,22 @@
+'禁止/允许弹出警示窗口，新建删除的时候避免弹出提示框
+Application.DispalyAlerts = false/true 
+
+'立即debug运行窗口输出
+Debug.Print 
+
+'计算工作表已经使用的行数, CountA工作表函数
+Application.CountA(Range("a:a"))
+Application.CountA(Columns(1))
+'计算工作表已经使用的列数
+Application.CountA(Range("1:1"))
+Application.CountA(Rows(1)))
+
+'Range嵌套Cell对象或者Range对象，进行区域选取
+Range（Cell, Cell）
+Range (Range, Range)
+
+'数字列号转化为字符列号 Chr
+Chr(64+i)
+
+'从字符串左边提出子串
+Left(str,len)
