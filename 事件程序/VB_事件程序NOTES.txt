@@ -1,0 +1,67 @@
+事件程序：一个操作而触发一段程序，机关
+	事件程序则可以根据不同的操作触发自动执行
+
+对应代码在对应的对象中，不存在于模块中
+	工作表事件	工作表
+	工作簿事件	工作簿
+	程序事件	工作簿或者类模块
+
+	Worksheet 
+		WindowResize		任何工作簿窗口被停用
+		SelectionChange		工作表选定区域发生改变
+		PivotTableUpdate	工作簿中数据透视表更新
+		FollowHyperlink		单击打开任意超链接
+		Deactivate		工作表、图表焦点离开
+		Change			更改工作表中的单元格
+		Calculate		工作表重新计算
+		BeforDoubleClick	双击前
+		BeforRightClick		右键前
+		Activate		激活事件
+
+应用程序事件 
+	存在于thisWorkbook中需要条件
+	Public WithEvents app As Excel.Application'什么app变量
+	private Sub Workbook_Open()		'打开事件复制app变量
+		Set app = Excel.Application
+	End Sub
+
+事件的触发顺序
+	工作表》工作簿》应用程序 从小到大
+
+工作表：
+Private Sub Worksheet_Activate() 
+Private Sub Worksheet_BeforeDoubleClick(ByVal Target As Range, Cancel As Boolean)    
+Private Sub Worksheet_BeforeRightClick(ByVal Target As Range, Cancel As Boolean) 
+Private Sub Worksheet_Calculate() 
+Private Sub Worksheet_Change(ByVal Target As Range) 
+Private Sub Worksheet_Deactivate() 
+Private Sub Worksheet_FollowHyperlink(ByVal Target As Hyperlink) 
+Private Sub Worksheet_SelectionChange(ByVal Target As Range)
+工作簿：
+Private Sub Workbook_AddinUninstall() 
+Private Sub Workbook_BeforeClose(Cancel As Boolean) 
+Private Sub Workbook_BeforePrint(Cancel As Boolean) 
+Private Sub Workbook_BeforeSave(ByVal SaveAsUI As Boolean, Cancel As Boolean) 
+Private Sub Workbook_Deactivate() 
+Private Sub Workbook_NewSheet(ByVal Sh As Object) 
+Private Sub Workbook_Open() 
+Private Sub Workbook_SheetActivate(ByVal Sh As Object) 
+Private Sub Workbook_SheetBeforeDoubleClick(ByVal Sh As Object, ByVal Target As Range, Cancel As Boolean) 
+Private Sub Workbook_SheetBeforeRightClick(ByVal Sh As Object, ByVal Target As Range, Cancel As Boolean) 
+Private Sub Workbook_SheetCalculate(ByVal Sh As Object) 
+Private Sub Workbook_SheetChange(ByVal Sh As Object, ByVal Target As Range) 
+Private Sub Workbook_SheetDeactivate(ByVal Sh As Object) 
+Private Sub Workbook_SheetFollowHyperlink(ByVal Sh As Object, ByVal Target As Hyperlink) 
+Private Sub Workbook_SheetSelectionChange(ByVal Sh As Object, ByVal Target As Range) 
+Private Sub Workbook_WindowActivate(ByVal Wn As Window) 
+Private Sub Workbook_WindowDeactivate(ByVal Wn As Window) 
+Private Sub Workbook_WindowResize(ByVal Wn As Window)
+应用程序：
+protected Sub ViewWindowActivate
+protected Sub ViewWindowBeforeClose
+protected Sub ViewWindowBeforeEdit
+protected Sub ViewWindowDeactivate
+protected Sub ViewWindowOpen
+protected Sub ViewWindowResize
+protected Sub NewWorkbook
+protected Sub AfterCalculate
