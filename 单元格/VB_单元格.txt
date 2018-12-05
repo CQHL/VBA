@@ -13,7 +13,7 @@ Range 对象，代表某一单元格、某一行、某一列、某一选定区域
 	Range("a1:d7,c4:e8").Select 合并选
 	Range("a1:d7 c4:e8").Select 交选
 
-更多变化写法：
+	更多变化写法：
 	参照位置，相对引用法，相对位置
 		Range("b2,d4").Range("a1").Select 
 	嵌套Cell
@@ -25,8 +25,35 @@ Range 对象，代表某一单元格、某一行、某一列、某一选定区域
 		Range("c3:e5")(2,3) '区域相对行列坐标
 	动态获取单元格对象，会经常做这样的操作
 	
+	属性：
+		NumberFormatLocal	'单元格格式，可自定义格式
+		Font			'是一个对象，包含字体颜色大小、字号等
+			(Name,zise,Bold,Color等属性可以设置)
+		Interrior		'代表Range对象的内部，用的比较多的是它的颜色
+		Interrior.Color		'设置底纹填充颜色
+			Interrior.ColorIndex = 1-56 	'56中颜色 索引颜色
+			Interrior.Color = QBColor(0-15) '16种颜色 早期颜色值
+			Interrior.Color = RGB(,,)	'RGB颜色，三原色值 可以直接用数字
+	操作：
+		ClearFormats	'清除单元格格式
+		Clear		'清除内容及格式
+		Offset(a,b)	'偏移的行数列数的等同大小区域
+		Currentregion	’该对象所在的Range区域,区别
+		Resize(a,b)	'调整Range对象，拓展成a行b列的Range对象
+		EntireRow	'指定区域的整行或者多行，Range对象
+		EntireColumn	'指定区域的整列或多列，Range对象
+		SpecialCells(Type,Vale)	'指定类型和值匹配的所有单元格Range对象
+		Find(,...)	'查找，参数很多，可以找文档细看
+		End(LRUD)	'返回区域尾端单元格,参数上下左右
+		
+	
 Range没有指定工作表，会默认为当前活动的工作表
 Range只对工作表对象中使用，不能对图表等其他表对象使用
+Range的Row、Column属性，指区域内左上角的行列号
+
+Selection表示为选中的区域，一个Rang对象
+Worksheet.UsedRange返回已经被使用的区域，最小长方形区域
+	如果设置了格式，也会被认定为已使用的区域；都没使用则定位到a1单元格
 
 Cells单元格 
 	Cells表示工作表中所有单元格集合
@@ -41,6 +68,21 @@ Cells单元格
 		[b2:c6].Item(3) 'Item必须写
 		Range("b2:c6")(3) 'Item被省略
 		[b2:c6].Cells(3)
+	活动单元格：
+		activecell
+	激活单元格：
+		cell对象.Activat
+
+
+	单元格属性：
+		值	Value 		'实际是什么就是什么
+		值	Text		'看到什么就是什么
+		（单区域可以省去Value赋值，对区域必须带上Value）
+		地址	Address(1, 1) 	'地址绝对引用
+		剪切	Cut		'区域1剪切到区域2
+		复制 	Copy		'区域1复制到区域2
+		赋值	=		'区域2等于区域1的值，必须用.Value属性，会清除格式
+		激活	Activate	'激活单元格
 
 三种单元格总结
 			Range		        Cells	   单元格地址
@@ -48,7 +90,7 @@ Cells单元格
 	变量支持	支持			支持	   不支持
 	书写难易	难			难	   易
 
-行列引用：
+行列：
 	列：
 		Columns(1)
 		Columns("a")
@@ -58,17 +100,14 @@ Cells单元格
 		Rows("2")
 		Rows("3:4")
 	Range("2:4") 等同于 [2:4]
-	Range("a:b") 等同于 [a:b]
+	Range("a:b") 等同于 [a:b] 
+	属性：
+		Rows(2).Insert		'第二行上边插入一行
+		Rows(1).Delete		'删除第一行
 
-Range的Row、Column属性，指区域内左上角的行列号
+Application操作单元格相关方法
 
-单元格属性
-	值	Value 		'实际是什么就是什么
-	值	Text		'看到什么就是什么
-		（单区域可以省去Value赋值，对区域必须带上Value）
-	地址	Address(1, 1) 	'绝对引用
-	剪切	Cut		'区域1剪切到区域2
-	复制 	Copy		'区域1复制到区域2
-	赋值	=		'区域2等于区域1的值，必须用.Value属性，会清除格式
-
-下一个教程3-13
+	Union 单元格并集 多个区域合并用于单元格连接
+		Rnage可以完成多区域引用，但是文本地址有256长度限制
+	Intersect 单元格交集  多个区域相交区域，没有交集返回Nothing
+	

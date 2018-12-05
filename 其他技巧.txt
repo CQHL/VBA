@@ -18,5 +18,18 @@ Range (Range, Range)
 '数字列号转化为字符列号 Chr
 Chr(64+i)
 
-'从字符串左边提出子串
+'从字符串左边提出子串,对循环生成的地址字符串操作
 Left(str,len)
+'判断是否是数字
+IsNumeric(String)
+
+'选中方法名，按F1，可以看文档
+
+'Now()得到当前时间
+Format(Now(), "ymdhms")
+
+' 多个区域合并 用于单元格连接，Rnage可以完成多区域引用，但是文本地址有256长度限制
+Application.Union
+
+'判断是否对象存在
+Is Nothing
