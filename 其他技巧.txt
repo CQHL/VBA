@@ -24,6 +24,8 @@ Left(str,len)
 IsNumeric(String)
 
 '选中方法名，按F1，可以看文档
+'打开粘贴模式
+Application.CutCopyMode = true/false
 
 'Now()得到当前时间
 Format(Now(), "ymdhms")

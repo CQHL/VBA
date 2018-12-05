@@ -34,9 +34,21 @@ Range 对象，代表某一单元格、某一行、某一列、某一选定区域
 			Interrior.ColorIndex = 1-56 	'56中颜色 索引颜色
 			Interrior.Color = QBColor(0-15) '16种颜色 早期颜色值
 			Interrior.Color = RGB(,,)	'RGB颜色，三原色值 可以直接用数字
+		MergeArea		'返回合并的Range单元格
+		Comment			'批注对象，单元格批注，没有批注会是Nothing
+			Comment.Visible	'是否显示
+			Comment.Shape.width/height/Fill	'批注属性
 	操作：
 		ClearFormats	'清除单元格格式
 		Clear		'清除内容及格式
+		PasteSpecial	'选择粘贴，从剪贴板粘贴到指定区域，
+		Cut		'区域1剪切到区域2
+		Copy		'区域1复制到区域2
+		Merge		'合并单元格
+		UnMerge		'拆分单元格
+		AddComment.Text ""	'增加批注
+		ClearComments		'删除批注
+		Activate	'激活单元格
 		Offset(a,b)	'偏移的行数列数的等同大小区域
 		Currentregion	’该对象所在的Range区域,区别
 		Resize(a,b)	'调整Range对象，拓展成a行b列的Range对象
@@ -79,11 +91,8 @@ Cells单元格
 		值	Text		'看到什么就是什么
 		（单区域可以省去Value赋值，对区域必须带上Value）
 		地址	Address(1, 1) 	'地址绝对引用
-		剪切	Cut		'区域1剪切到区域2
-		复制 	Copy		'区域1复制到区域2
 		赋值	=		'区域2等于区域1的值，必须用.Value属性，会清除格式
-		激活	Activate	'激活单元格
-
+		
 三种单元格总结
 			Range		        Cells	   单元格地址
 	引用对象	单元格、区域、行列	单元格	   同Range
@@ -110,4 +119,18 @@ Application操作单元格相关方法
 	Union 单元格并集 多个区域合并用于单元格连接
 		Rnage可以完成多区域引用，但是文本地址有256长度限制
 	Intersect 单元格交集  多个区域相交区域，没有交集返回Nothing
-	
+	Range.Copy 
+	Sheet.Paste(Destination,Link) 单元格复制，工作表粘贴
+
+Shapes 图形对象,指工作表所有Shape对象集合
+Shape	一个图片、形状、图表、按钮等都是一个Shape对象
+	常用属性：
+		Name	名称
+		Type	图形类型，有一个int表示不同的类型
+		Top	顶端坐标
+		Left	左端坐标
+		Width	宽度
+		Height	高度
+	操作：
+		Shapes.AddPicture(..)	'添加图片对象，参数*7必填
+		shape.Delete		'删除图形对象
