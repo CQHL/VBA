@@ -35,3 +35,6 @@ Application.Union
 
 '判断是否对象存在
 Is Nothing
+
+'行列转置
+Application.Transpose(arry)

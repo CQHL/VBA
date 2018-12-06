@@ -1,0 +1,23 @@
+数组，一个列表或者一组数据表，存储在内存中
+特点 读写速度快，永远无法保存
+
+常量数组、静态数组、动态数组，还可以按维度区分可以有最多60个维度
+
+定义
+	Dim arr1(3)			一维数组【0,1,2,3】
+	Dim arr2(1 To 3) 		一维数组【1,2,3】	
+	Dim arr3(1 To 3, 1 To 2)	二维数组【1,2,3】【1,2】
+	Dim arr4(3, 2)			二维数组【0,1,2,3】【0,1,2】
+赋值
+	arr = Array (1,2,3,4)		数组赋值，Array从0位置开始赋值
+	arr = Array (Array("a","b"),Array(1,2,3))
+	arr(3) = "Value"		指定位置赋值
+	arr = [a1：c1]			写入多行都是二维数组，使用Transpose转置
+	arr = Transpose([a1:a4])	一列数据变为一维数组，一次Transpose
+	arr = Transpose(Transpose[a1:d1])一行数据变一维数组，两次Transpose
+;分号换行 ,逗号分列
+	数组对Range赋值需要注意一下行列方向，
+
+运用：
+	WorksheetFunction.Sum/Average/Min/Max(Arry)
+	WorksheetFunction.Small/Large(Arry,int) 第int个小/大值
