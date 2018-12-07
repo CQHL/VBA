@@ -1,3 +1,6 @@
+'规定变量必须申明，才能使用
+Option Explicit
+
 '禁止/允许弹出警示窗口，新建删除的时候避免弹出提示框
 Application.DispalyAlerts = false/true 
 

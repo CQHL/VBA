@@ -1,0 +1,44 @@
+1.VBA字典技术 相当于联合数组，<Key,Item>
+	方法：Add, Keys, Items, Exists, Remove, RemoveAll
+	属性：Count, Key,Item, CompareMode
+	Key关键字类型 速度：纯数字>纯文本>>>文本/数值混合型
+
+	Dim d As Object
+	Set d = CreateObject("Scripting.Dictionary")
+	d.add "a", "Example1"
+	d.add "b", 9		'add重复Key会报错
+	d("b") = 7		'赋值操作，直接覆盖，不报错
+	d.Item("b") = 7		'等同于赋值
+	d.Key("a") = "aa"	'替换Key值
+
+	更改Key值比较时用的方式：CompareMode = 0(二进制)/1(文本)/2(数据库)
+2.正则表达式
+	*	零次或多次
+	+	一次或多次
+	？	零次或一次
+	.	除换行符之外的单字符
+	^	字符串开始位置
+	$	字符串结尾位置，如果设置了多行属性则也匹配'\n'、'\r'
+	|	两项之间的选择
+	[]	表达式开始于结束
+	\b	字与空格间的位置 单词边界
+	\B	非单词边界
+	{}	限定符（表示出现次数条件）表达式的开始
+		*、+、？
+		{n}	确定n次
+		{n,}	匹配n及以上次
+		{n,m}	匹配n-m次
+
+VBA自定义函数
+	Eg:申明Function V ，定义V 替换成什么样式
+
+	Function V(a , b , c)
+		V = a * (b + c)/ 3
+	End Function
+
+提示对话框
+	MsgBox(Prompt[,buttons][,title][,helpfile,context])
+	InputBox
+类模块 :区别于窗体模块，标准模块
+窗体与控件：JAVA swing很类似，C++界面也很类似，动手做一下就知道了
+Ribbon DIY插件？?等以后再细细了解

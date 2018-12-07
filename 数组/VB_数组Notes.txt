@@ -21,3 +21,18 @@
 运用：
 	WorksheetFunction.Sum/Average/Min/Max(Arry)
 	WorksheetFunction.Small/Large(Arry,int) 第int个小/大值
+
+	UBound(arr,1) 		第1维数组的上界
+	LBound(arr)		一维数组的下界，不写数字默认为一维下界
+	
+	Split(Str, "-")		拆分字符串为一维数组
+	Join(arr，"-")		一维数组组合成字符串
+	Filter(arr, "b", True)	查找一维数组True有“b”的数组
+
+动态数组：
+	Dim ReDim,用于为动态数组变量重新分配存储空间
+	ReDim [PreServe] varname() [As Type]
+	
+	Dim arr() 
+	ReDim arr(1 To m)	大小没有确定，后面动态确定数组大小
+	ReDim Preserve arr(1 To m)	Preserve保留数组原来的值
