@@ -42,3 +42,12 @@ VBA自定义函数
 类模块 :区别于窗体模块，标准模块
 窗体与控件：JAVA swing很类似，C++界面也很类似，动手做一下就知道了
 Ribbon DIY插件？?等以后再细细了解
+
+Excel版本与编号
+	EXCEL97 8
+	EXCEL2000 9
+	EXCEL2002 10
+	EXCEL2003 11
+	EXCEL2007 12
+	EXCEL2010 14
+ 
